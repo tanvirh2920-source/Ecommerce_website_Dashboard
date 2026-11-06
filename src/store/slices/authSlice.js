@@ -3,7 +3,7 @@ import { axiosInstance } from "../../lib/axiosInstance";
 
 export const loginAdmin = createAsyncThunk("auth/login", async (credentials, { rejectWithValue }) => {
   try {
-    const { data } = await axiosInstance.post("/auth/login", credentials);
+    const { data } = await axiosInstance.post("/auth/admin/login", credentials);
     return data;
   } catch (error) {
     return rejectWithValue(error.response?.data?.message || "Login failed");

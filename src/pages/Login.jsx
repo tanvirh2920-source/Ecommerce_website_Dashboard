@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { loginAdmin, logoutAdmin, clearAuthError } from "../store/slices/authSlice";
+import { loginAdmin, clearAuthError } from "../store/slices/authSlice";
 import { toast } from "react-toastify";
 import { Mail, Lock, Eye, EyeOff, Zap, ArrowRight, ShieldCheck } from "lucide-react";
 
@@ -23,11 +23,8 @@ const Login = () => {
   useEffect(() => {
     if (isAuthenticated && user?.role === "Admin") {
       navigate("/");
-    } else if (isAuthenticated && user && user?.role !== "Admin") {
-      toast.error("Access denied. Admin only.");
-      dispatch(logoutAdmin());
     }
-  }, [isAuthenticated, user, navigate, dispatch]);
+  }, [isAuthenticated, user, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
